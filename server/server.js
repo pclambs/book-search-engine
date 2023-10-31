@@ -34,6 +34,6 @@ db.once('open', async () => {
 
   app.listen(PORT, () => {
     console.log(`Express listening at http://localhost:${PORT}`)
-    console.log(`GraphQL available at http://localhost:${PORT}/graphql`)
+    console.log(`GraphQL available at http://localhost:${PORT}/graphql `)
   })
 })
