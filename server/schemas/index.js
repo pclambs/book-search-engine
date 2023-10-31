@@ -1,4 +1,4 @@
-const schema = require('./schema')
+const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers')
 
-module.exports = { schema, resolvers }
+module.exports = { typeDefs, resolvers }

@@ -1,4 +1,4 @@
-const schema = `
+const typeDefs = `
   type User {
     _id: ID
     username: String!
@@ -23,4 +23,4 @@ const schema = `
   }
 `
 
-module.exports = schema
+module.exports = typeDefs
