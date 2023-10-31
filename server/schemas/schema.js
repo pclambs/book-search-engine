@@ -1,11 +1,11 @@
-export const schema = `
+const schema = `
   type User {
     _id: ID
     username: String!
     email: String!
     password: String!
     bookCount: Int
-    books: [Book]
+    savedBooks: [Book]
   }
 
   type Book {
@@ -20,6 +20,7 @@ export const schema = `
 
   type Query {
     users: [User]
-    books: [Book]
   }
 `
+
+module.exports = schema
