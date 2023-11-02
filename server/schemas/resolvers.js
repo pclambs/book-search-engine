@@ -1,4 +1,6 @@
 const { User } = require('../models')
+const { signToken } = require('../utils/auth')
+const { GraphQLError } = require('graphql')
 
 const resolvers = {
   Query: {
@@ -6,22 +8,25 @@ const resolvers = {
       if (context.user) {
         return User.findOne({ _id: context.user._id })
       }
-      throw new Error('Must be logged in.')
+      throw new GraphQLError("Login required")
     },
   },
   Mutation: {
     login: async (partent, { email, password }, context, index) => {
       const user = await User.findOne({ email })
-      console.log(user)
+      // console.log(user)
       if (!user) {
-        throw new Error('Incorrect credentials')
+        throw new GraphQLError("No user detected")
       }
     
       const verifiedPass = await user.isCorrectPassword(password)
-      console.log(verifiedPass)
+      // console.log(verifiedPass)
       if (!verifiedPass) {
-        throw new Error('Incorrect credentials')
+        throw new GraphQLError("Password not verified")
       }
+
+      const token = signToken(user)
+      return { token, user }
     }
   },
 }
